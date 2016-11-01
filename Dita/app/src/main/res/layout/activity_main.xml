@@ -14,7 +14,9 @@
         android:id="@+id/textF"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:text="Pressione o botao para falar"
+        android:layout_centerHorizontal="true"
+        android:textSize="20dp"/>
 
     <Button
         android:id="@+id/buttonPalavra"
@@ -22,11 +24,14 @@
         android:layout_height="wrap_content"
         android:text="Procurar"
         android:layout_below="@+id/textF"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="14dp"
-        android:layout_marginStart="14dp"
-        android:layout_marginTop="52dp" />
+        android:layout_centerHorizontal="true"
+        android:onClick="procurar"/>
 
+    <TextView
+        android:id="@+id/resultado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="RESULTADO"
+        android:layout_below="@id/buttonPalavra"/>
 
 </RelativeLayout>

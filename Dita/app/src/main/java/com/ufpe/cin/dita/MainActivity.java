@@ -16,84 +16,27 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class MainActivity extends AppCompatActivity {
-    protected TextView wordTextView;
-    protected Button buttonView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+    }
 
-        wordTextView = (TextView) findViewById(R.id.textF);
-        buttonView = (Button) findViewById(R.id.buttonPalavra);
+    public void procurar(View view){
 
+        //Criar objeto da classe de hitallo (Faltando)
+        //Chamar metodo de hitallo (Faltando)
+        TextView texto = (TextView) findViewById(R.id.resultado);
+        //Print resultado
 
-        buttonView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new JSONTask().execute("http://dicionario-aberto.net/search-json/arroz");
-            }
-        });
-
-
-        };
-
-        public class JSONTask extends AsyncTask<String,String,String> {
+        JSONTask jsontask = new JSONTask(texto);
+        String site = "http://dicionario-aberto.net/search-json/";
+        site.concat("arroz");
+        jsontask.execute("http://dicionario-aberto.net/search-json/arroz");
 
 
-            @Override
-            protected String doInBackground(String... urls) {
-
-
-                HttpURLConnection connection = null;
-                BufferedReader reader = null;
-                try {
-                    URL url = new URL(urls[0]);
-                    connection = (HttpURLConnection) url.openConnection();
-                    connection.connect();
-                    InputStream stream = connection.getInputStream();
-                    reader = new BufferedReader(new InputStreamReader(stream));
-                    StringBuffer buffer = new StringBuffer();
-                    String line = "";
-                    while ((line = reader.readLine()) != null) {
-
-                        buffer.append(line);
-
-                    }
-                  String finalJSON = buffer.toString();
-                   // JSONObject finalObject = new JSONObject(finalJSON);
-
-
-
-
-                   return buffer.toString();
-                } catch (MalformedURLException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } finally {
-                    if (connection != null) {
-                        connection.disconnect();
-                    }
-
-                    try {
-                        if (reader != null) reader.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-
-                return null;
-            }
-
-            @Override
-            protected void onPostExecute(String result) {
-                super.onPostExecute(result);
-              //  textView.setText(result);
-                wordTextView.setText(result);
-            }
-        }
-
-
-
-
+        //texto.setText(jsontask.getResultado());
+    }
 }

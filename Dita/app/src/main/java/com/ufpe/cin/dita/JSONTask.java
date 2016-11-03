@@ -1,6 +1,7 @@
 package com.ufpe.cin.dita;
 
 import android.os.AsyncTask;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -19,7 +20,14 @@ import java.net.URL;
  */
 
 public class JSONTask extends AsyncTask<String,String,String> {
-    protected String resultado;
+
+    public String resultado = "";
+    TextView text = null;
+
+    public JSONTask(TextView text){
+
+        this.text = text;
+    }
 
     @Override
     protected String doInBackground(String... urls) {
@@ -58,6 +66,7 @@ public class JSONTask extends AsyncTask<String,String,String> {
             bufferFinal.append(gramGrp);
             bufferFinal.append(definition);
             // id+" "+gramGrp+" "+definition
+            //resultado = bufferFinal.toString();
             return bufferFinal.toString();
         } catch (MalformedURLException e) {
             e.printStackTrace();
@@ -84,13 +93,8 @@ public class JSONTask extends AsyncTask<String,String,String> {
     protected void onPostExecute(String result) {
         super.onPostExecute(result);
         //  textView.setText(result);
-        resultado = result;
 
+        this.text.setText(result);
 
-    }
-
-    public String getResultado(){
-
-        return resultado;
     }
 }

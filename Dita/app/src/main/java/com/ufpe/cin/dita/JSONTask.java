@@ -1,6 +1,7 @@
 package com.ufpe.cin.dita;
 
 import android.os.AsyncTask;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -23,10 +24,12 @@ public class JSONTask extends AsyncTask<String,String,String> {
 
     public String resultado = "";
     TextView text = null;
+    ImageView image = null;
 
-    public JSONTask(TextView text){
+    public JSONTask(TextView text, ImageView image){
 
         this.text = text;
+        this.image = image;
     }
 
     @Override
@@ -95,6 +98,8 @@ public class JSONTask extends AsyncTask<String,String,String> {
         //  textView.setText(result);
 
         this.text.setText(result);
+        this.image.setImageResource(R.drawable.conclusao);
+        this.image.setTag("conclusao");
 
     }
 }

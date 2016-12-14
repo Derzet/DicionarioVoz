@@ -4,13 +4,11 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.ufpe.cin.dita.MainActivity">
+    android:layout_margin="16dp"
+    tools:context=".MainActivity"
+    tools:ignore="MergeRootFrame">
 
-    <TextView
+    <!--<TextView
         android:id="@+id/textF"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -32,6 +30,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="RESULTADO"
-        android:layout_below="@id/buttonPalavra"/>
+        android:layout_below="@id/buttonPalavra"/>-->
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/pensando"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:id="@+id/resultado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/image"
+        android:layout_marginTop="16dp"/>
 
 </RelativeLayout>

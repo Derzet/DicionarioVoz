@@ -1,5 +1,8 @@
 package com.ufpe.cin.dita;
 
+import android.content.res.AssetManager;
+import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -23,13 +26,19 @@ import java.net.URL;
 public class JSONTask extends AsyncTask<String,String,String> {
 
     public String resultado = "";
+
+    TextView titulo = null;
     TextView text = null;
     ImageView image = null;
 
-    public JSONTask(TextView text, ImageView image){
+    int indice;
+
+    public JSONTask(TextView text, ImageView image, TextView titulo){
 
         this.text = text;
         this.image = image;
+        this.titulo = titulo;
+        this.indice = 0;
     }
 
     @Override
@@ -64,10 +73,15 @@ public class JSONTask extends AsyncTask<String,String,String> {
             JSONObject finalObject = parentArray.getJSONObject(0);
             String id =  parentObject.getString("@id");
             String gramGrp= " "+finalObject.getString("gramGrp");
+
             String definition = " "+finalObject.getString("def");
+
             bufferFinal.append(id);
             bufferFinal.append(gramGrp);
-            bufferFinal.append(definition);
+
+            bufferFinal.append(definition.replace("<br/>", "\n"));
+
+
             // id+" "+gramGrp+" "+definition
             //resultado = bufferFinal.toString();
             return bufferFinal.toString();
@@ -97,8 +111,13 @@ public class JSONTask extends AsyncTask<String,String,String> {
         super.onPostExecute(result);
         //  textView.setText(result);
 
+//        Typeface type = Typeface.createFromAsset(get, arial.ttf);
+
+
         this.text.setText(result);
+
         this.image.setImageResource(R.drawable.conclusao);
+
         this.image.setTag("conclusao");
 
     }
